@@ -1,0 +1,2 @@
+usage: sample.py [-h] [--random] [--ratio_first RATIO_FIRST] [--ratio_second RATIO_SECOND] [--group_num GROUP_NUM] [--k K]
+sample.py: error: argument --ratio_first: invalid float value: '=0.1'

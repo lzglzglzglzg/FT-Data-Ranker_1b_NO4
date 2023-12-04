@@ -1,0 +1,427 @@
+[2023-11-16 16:51:39,520] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-16 16:51:40,928] [WARNING] [runner.py:203:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+[2023-11-16 16:51:40,974] [INFO] [runner.py:570:main] cmd = /home/zhaoguang/software/miniconda3/envs/dj_comp/bin/python -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMiwgMywgNCwgNV19 --master_addr=127.0.0.1 --master_port=50000 --enable_each_rank_log=None train.py --model_name_or_path ../data/models/falcon-rw-1b --tokenizer ../data/models/falcon-rw-1b --data_path ../outputs_dj_dq/test5/data.jsonl --output_dir ../outputs_dj_dq/test5/finetuned_model_1b --per_device_train_batch_size 16 --gradient_accumulation_steps 4 --lang en --bf16 True --gradient_checkpointing_enable True --num_train_epochs 3 --model_max_length 1024 --learning_rate 2.5e-5 --weight_decay 0 --warmup_ratio 0.03 --evaluation_strategy no --save_strategy no --save_steps -1 --save_total_limit 999 --lr_scheduler_type cosine --logging_steps 1 --tf32 True --deepspeed /home/zhaoguang/raid/project/competition/competition_kit/lm-training/train_scripts/deepspeed_configs/ds_config_stage3.json
+[2023-11-16 16:51:42,030] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-16 16:51:43,497] [INFO] [launch.py:145:main] WORLD INFO DICT: {'localhost': [2, 3, 4, 5]}
+[2023-11-16 16:51:43,497] [INFO] [launch.py:151:main] nnodes=1, num_local_procs=4, node_rank=0
+[2023-11-16 16:51:43,498] [INFO] [launch.py:162:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3]})
+[2023-11-16 16:51:43,498] [INFO] [launch.py:163:main] dist_world_size=4
+[2023-11-16 16:51:43,498] [INFO] [launch.py:165:main] Setting CUDA_VISIBLE_DEVICES=2,3,4,5
+[2023-11-16 16:51:45,906] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-16 16:51:45,974] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-16 16:51:46,027] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-16 16:51:46,028] [INFO] [real_accelerator.py:158:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-11-16 16:51:47,473] [INFO] [comm.py:637:init_distributed] cdb=None
+[2023-11-16 16:51:47,538] [INFO] [comm.py:637:init_distributed] cdb=None
+[2023-11-16 16:51:47,598] [INFO] [comm.py:637:init_distributed] cdb=None
+[2023-11-16 16:51:47,605] [INFO] [comm.py:637:init_distributed] cdb=None
+[2023-11-16 16:51:47,605] [INFO] [comm.py:668:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+Loading model from ../data/models/falcon-rw-1b
+[2023-11-16 16:51:51,957] [INFO] [partition_parameters.py:347:__exit__] finished initializing model - num_params = 292, num_elems = 1.41B
+gradient_checkpointing_enable
+Model class: <class 'transformers_modules.falcon-rw-1b.modeling_falcon.FalconForCausalLM'>
+Tokenizer class: <class 'transformers.models.gpt2.tokenization_gpt2.GPT2Tokenizer'>
+[2023-11-16 16:51:57,683] [INFO] [partition_parameters.py:347:__exit__] finished initializing model - num_params = 293, num_elems = 1.52B
++---------+---------+------------+-------------+------------+-------------+------------+-------------+------------+----------------+
+|         |pad_token|pad_token_id|  bos_token  |bos_token_id|  eos_token  |eos_token_id|  unk_token  |unk_token_id|model_max_length|
++---------+---------+------------+-------------+------------+-------------+------------+-------------+------------+----------------+
+|tokenizer|  [PAD]  |   50257    |<|endoftext|>|   50256    |<|endoftext|>|   50256    |<|endoftext|>|   50256    |      1024      |
++---------+---------+------------+-------------+------------+-------------+------------+-------------+------------+----------------+
+|  model  |    -    |   50257    |      -      |   50256    |      -      |   50256    |      -      |   50256    |       -        |
++---------+---------+------------+-------------+------------+-------------+------------+-------------+------------+----------------+
+Downloading and preparing dataset json/default to /home/zhaoguang/.cache/huggingface/datasets/json/default-eeab16e4822e91b6/0.0.0/fe5dd6ea2639a6df622901539cb550cf8797e5a6b2dd7af1cf934bed8e233e6e...
+Dataset json downloaded and prepared to /home/zhaoguang/.cache/huggingface/datasets/json/default-eeab16e4822e91b6/0.0.0/fe5dd6ea2639a6df622901539cb550cf8797e5a6b2dd7af1cf934bed8e233e6e. Subsequent calls will reuse this data.
+There are 29908 training samples in data path
+Formatting inputs...
+Tokenizing inputs... This may take some time...
+PROMPT:
+'Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\nWrite a 500 word article on the importance of cybersecurity.\n\n### Response:'
+RESPONSE:
+'Cybersecurity is becoming an increasingly important issue in the modern digital world, as more and more of our lives are conducted online. Cybersecurity is the practice of protecting networks, systems, and programs from digital attacks. These attacks can range from the theft of data to malicious programs that can cause damage to a computer or network. As the digital landscape continues to grow, the need for strong cybersecurity measures is more important than ever. \n\nCyber criminals often target large companies and organizations in order to gain access to sensitive information or financial accounts. Although companies can take steps to protect their data, it is also important for individuals to understand the importance of cybersecurity. Even small actions, such as using strong passwords and two-factor authentication, can help protect an individual’s data.\n\nAnother reason why cybersecurity is so important is because of the potential for large-scale attacks. Cyber criminals can use sophisticated tools to launch attacks that can affect millions of computers and networks. These attacks can disrupt services, steal data, and even cause physical damage. The effects of such attacks can be far-reaching and have long-term consequences for individuals and organizations.\n\nIn addition to protecting data, cybersecurity is also important for protecting individuals’ privacy. Many websites, apps, and services collect personal information from users. Cyber criminals can use this information to commit identity theft or gain access to bank accounts and other sensitive information. By taking steps to secure their data, individuals can protect their privacy and ensure that their data remains secure.\n\nFinally, cybersecurity is important for protecting critical infrastructure. Governments, organizations, and individuals rely on networks and systems to provide necessary services, such as energy, transportation, and communication. Cyber criminals can use their skills to disrupt these services, which can cause significant harm and disruption.\n\nOverall, cybersecurity is an important issue that must be taken seriously. Individuals, organizations, and governments should take steps to protect their data and systems from cyber criminals. By understanding the importance of cybersecurity and taking steps to protect their data and networks, individuals can help protect themselves and the world from cyber attacks.<|endoftext|>'
+====================================================================================================
+PROMPT:
+"Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\nI was going through updated official APNS documentation and it clearly says,\nAll developers should migrate their remote notification provider servers to the more capable and more efficient HTTP/2-based API described in APNs Provider API.\nBut the new APNs Provider API doesn't seem to have old APNS Feedback Service.\nThey have changed endpoint URLs which doesn't have feedback service endpoint.\nAlso looks the error codes are upgraded now, which includes below error code,\nUnregistered -\nThe device token is inactive for the specified topic.\nSo aren't we suppose to call the APNS Feedback service anymore?\nMy major problem is I'm using javapns api version 2.2 for iOS push notifications for which I'm not able to find any update which will help me to cope up with this new changes.\n\n### Response:"
+RESPONSE:
+"As an AI language model, i don't know the answer to this question as i do not have access to the latest APNS documentation or the ability to update java API for iOS push notifications. However, I suggest consulting with a technology expert or reaching out to Apple support for assistance.<|endoftext|>"
+====================================================================================================
+PROMPT:
+'Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\nWhat label best describes this news article?\nMicrosoft Trims Next Windows Server Release Microsoft Corp. wants to deliver its Windows Server 2003 update, known as quot;R2, quot; in 2005.\nTo make sure it will be able do so, the company is prioritizing its feature list and moving some R2 features into later releases.\n\n### Response:'
+RESPONSE:
+'Technology/Software Development<|endoftext|>'
+====================================================================================================
+PROMPT:
+'Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\nCan you help me create a social media strategy?\n\n### Response:'
+RESPONSE:
+'Absolutely! I can help you create a comprehensive social media strategy by researching the current landscape, understanding your goals, and analyzing the data to create an effective plan. I can also help you create content for your social media channels, optimize your content for the various platforms, and track the success of your campaigns.<|endoftext|>'
+====================================================================================================
+PROMPT:
+'Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n### Instruction:\nWhat are some easy recipes that I can cook for dinner?\n\n### Response:'
+RESPONSE:
+'Some easy recipes for dinner that you can consider cooking are stir-fry dishes with vegetables and proteins, pasta dishes like spaghetti and meatballs, pan-seared chicken or fish with roasted vegetables, and grain bowls with roasted vegetables, protein and grains like quinoa, brown rice or farro.<|endoftext|>'
+====================================================================================================
+ORI NUMBER: 29908, AFTER FILETER: 29907, DROP NUMBER: 1
+Total 29907 samples [ 5.51M tokens] in training!
+Parameter Offload: Total persistent parameters: 643072 in 194 params
+{'loss': 1.7578, 'learning_rate': 2.2727272727272728e-06, 'epoch': 0.01}
+{'loss': 1.7603, 'learning_rate': 4.5454545454545455e-06, 'epoch': 0.02}
+{'loss': 1.7261, 'learning_rate': 6.818181818181818e-06, 'epoch': 0.03}
+{'loss': 1.6895, 'learning_rate': 9.090909090909091e-06, 'epoch': 0.03}
+{'loss': 1.5908, 'learning_rate': 1.1363636363636365e-05, 'epoch': 0.04}
+{'loss': 1.5269, 'learning_rate': 1.3636363636363637e-05, 'epoch': 0.05}
+{'loss': 1.5112, 'learning_rate': 1.590909090909091e-05, 'epoch': 0.06}
+[2023-11-16 16:56:32,750] [WARNING] [stage3.py:1949:step] 1 pytorch allocator cache flushes since last step. this happens when there is high memory pressure and is detrimental to performance. if this is happening frequently consider adjusting settings to reduce memory consumption. If you are unable to make the cache flushes go away consider adding get_accelerator().empty_cache() calls in your training loop to ensure that all ranks flush their caches at the same time
+{'loss': 1.4668, 'learning_rate': 1.8181818181818182e-05, 'epoch': 0.07}
+{'loss': 1.4121, 'learning_rate': 2.0454545454545457e-05, 'epoch': 0.08}
+{'loss': 1.4795, 'learning_rate': 2.272727272727273e-05, 'epoch': 0.09}
+{'loss': 1.4233, 'learning_rate': 2.5e-05, 'epoch': 0.09}
+{'loss': 1.4619, 'learning_rate': 2.49994663962921e-05, 'epoch': 0.1}
+{'loss': 1.3828, 'learning_rate': 2.499786563072566e-05, 'epoch': 0.11}
+{'loss': 1.3657, 'learning_rate': 2.4995197839968593e-05, 'epoch': 0.12}
+{'loss': 1.4956, 'learning_rate': 2.499146325178779e-05, 'epoch': 0.13}
+[2023-11-16 17:00:17,841] [WARNING] [stage3.py:1949:step] 1 pytorch allocator cache flushes since last step. this happens when there is high memory pressure and is detrimental to performance. if this is happening frequently consider adjusting settings to reduce memory consumption. If you are unable to make the cache flushes go away consider adding get_accelerator().empty_cache() calls in your training loop to ensure that all ranks flush their caches at the same time
+{'loss': 1.3672, 'learning_rate': 2.4986662185029657e-05, 'epoch': 0.14}
+{'loss': 1.3281, 'learning_rate': 2.4980795049592925e-05, 'epoch': 0.15}
+[2023-11-16 17:01:13,635] [WARNING] [stage3.py:1949:step] 1 pytorch allocator cache flushes since last step. this happens when there is high memory pressure and is detrimental to performance. if this is happening frequently consider adjusting settings to reduce memory consumption. If you are unable to make the cache flushes go away consider adding get_accelerator().empty_cache() calls in your training loop to ensure that all ranks flush their caches at the same time
+{'loss': 1.3584, 'learning_rate': 2.497386234639363e-05, 'epoch': 0.15}
+{'loss': 1.3706, 'learning_rate': 2.4965864667322354e-05, 'epoch': 0.16}
+{'loss': 1.3604, 'learning_rate': 2.4956802695193682e-05, 'epoch': 0.17}
+{'loss': 1.3809, 'learning_rate': 2.494667720368793e-05, 'epoch': 0.18}
+{'loss': 1.3767, 'learning_rate': 2.493548905728507e-05, 'epoch': 0.19}
+{'loss': 1.3423, 'learning_rate': 2.4923239211190923e-05, 'epoch': 0.2}
+{'loss': 1.3569, 'learning_rate': 2.4909928711255616e-05, 'epoch': 0.21}
+{'loss': 1.3633, 'learning_rate': 2.4895558693884286e-05, 'epoch': 0.21}
+{'loss': 1.3391, 'learning_rate': 2.4880130385940064e-05, 'epoch': 0.22}
+{'loss': 1.356, 'learning_rate': 2.4863645104639326e-05, 'epoch': 0.23}
+{'loss': 1.2627, 'learning_rate': 2.4846104257439222e-05, 'epoch': 0.24}
+[2023-11-16 17:06:03,031] [WARNING] [stage3.py:1949:step] 1 pytorch allocator cache flushes since last step. this happens when there is high memory pressure and is detrimental to performance. if this is happening frequently consider adjusting settings to reduce memory consumption. If you are unable to make the cache flushes go away consider adding get_accelerator().empty_cache() calls in your training loop to ensure that all ranks flush their caches at the same time
+{'loss': 1.292, 'learning_rate': 2.482750934191753e-05, 'epoch': 0.25}
+{'loss': 1.22, 'learning_rate': 2.4807861945644794e-05, 'epoch': 0.26}
+{'loss': 1.3247, 'learning_rate': 2.4787163746048776e-05, 'epoch': 0.26}
+{'loss': 1.2554, 'learning_rate': 2.4765416510271234e-05, 'epoch': 0.27}
+{'loss': 1.2676, 'learning_rate': 2.4742622095017076e-05, 'epoch': 0.28}
+{'loss': 1.2651, 'learning_rate': 2.471878244639582e-05, 'epoch': 0.29}
+[2023-11-16 17:08:49,888] [WARNING] [stage3.py:1949:step] 1 pytorch allocator cache flushes since last step. this happens when there is high memory pressure and is detrimental to performance. if this is happening frequently consider adjusting settings to reduce memory consumption. If you are unable to make the cache flushes go away consider adding get_accelerator().empty_cache() calls in your training loop to ensure that all ranks flush their caches at the same time
+{'loss': 1.2698, 'learning_rate': 2.469389959975546e-05, 'epoch': 0.3}
+{'loss': 1.3086, 'learning_rate': 2.466797567950866e-05, 'epoch': 0.31}
+{'loss': 1.3125, 'learning_rate': 2.4641012898951425e-05, 'epoch': 0.32}
+{'loss': 1.2515, 'learning_rate': 2.4613013560074097e-05, 'epoch': 0.32}
+{'loss': 1.2803, 'learning_rate': 2.4583980053364843e-05, 'epoch': 0.33}
+{'loss': 1.2429, 'learning_rate': 2.4553914857605562e-05, 'epoch': 0.34}
+{'loss': 1.2222, 'learning_rate': 2.4522820539660242e-05, 'epoch': 0.35}
+{'loss': 1.2471, 'learning_rate': 2.4490699754255812e-05, 'epoch': 0.36}
+{'loss': 1.2817, 'learning_rate': 2.445755524375551e-05, 'epoch': 0.37}
+{'loss': 1.3264, 'learning_rate': 2.4423389837924725e-05, 'epoch': 0.38}
+{'loss': 1.2356, 'learning_rate': 2.438820645368942e-05, 'epoch': 0.38}
+{'loss': 1.2905, 'learning_rate': 2.4352008094887075e-05, 'epoch': 0.39}
+{'loss': 1.2334, 'learning_rate': 2.4314797852010247e-05, 'epoch': 0.4}
+{'loss': 1.2368, 'learning_rate': 2.4276578901942702e-05, 'epoch': 0.41}
+{'loss': 1.2949, 'learning_rate': 2.4237354507688208e-05, 'epoch': 0.42}
+{'loss': 1.2402, 'learning_rate': 2.4197128018091908e-05, 'epoch': 0.43}
+{'loss': 1.2671, 'learning_rate': 2.4155902867554447e-05, 'epoch': 0.44}
+{'loss': 1.2903, 'learning_rate': 2.411368257573874e-05, 'epoch': 0.44}
+{'loss': 1.2134, 'learning_rate': 2.4070470747269455e-05, 'epoch': 0.45}
+{'loss': 1.2776, 'learning_rate': 2.4026271071425306e-05, 'epoch': 0.46}
+{'loss': 1.2598, 'learning_rate': 2.398108732182404e-05, 'epoch': 0.47}
+{'loss': 1.2812, 'learning_rate': 2.3934923356100264e-05, 'epoch': 0.48}
+{'loss': 1.3037, 'learning_rate': 2.3887783115576106e-05, 'epoch': 0.49}
+{'loss': 1.2615, 'learning_rate': 2.3839670624924706e-05, 'epoch': 0.5}
+{'loss': 1.2832, 'learning_rate': 2.379058999182661e-05, 'epoch': 0.5}
+{'loss': 1.2085, 'learning_rate': 2.374054540661907e-05, 'epoch': 0.51}
+[2023-11-16 17:20:29,817] [WARNING] [stage3.py:1949:step] 1 pytorch allocator cache flushes since last step. this happens when there is high memory pressure and is detrimental to performance. if this is happening frequently consider adjusting settings to reduce memory consumption. If you are unable to make the cache flushes go away consider adding get_accelerator().empty_cache() calls in your training loop to ensure that all ranks flush their caches at the same time
+{'loss': 1.2183, 'learning_rate': 2.3689541141938283e-05, 'epoch': 0.52}
+{'loss': 1.2427, 'learning_rate': 2.36375815523546e-05, 'epoch': 0.53}
+{'loss': 1.2979, 'learning_rate': 2.3584671074000775e-05, 'epoch': 0.54}
+{'loss': 1.2656, 'learning_rate': 2.35308142241932e-05, 'epoch': 0.55}
+{'loss': 1.2827, 'learning_rate': 2.3476015601046225e-05, 'epoch': 0.56}
+{'loss': 1.3098, 'learning_rate': 2.342027988307962e-05, 'epoch': 0.56}
+{'loss': 1.2766, 'learning_rate': 2.3363611828819104e-05, 'epoch': 0.57}
+{'loss': 1.2476, 'learning_rate': 2.33060162763901e-05, 'epoch': 0.58}
+{'loss': 1.3496, 'learning_rate': 2.3247498143104656e-05, 'epoch': 0.59}
+{'loss': 1.2476, 'learning_rate': 2.318806242504164e-05, 'epoch': 0.6}
+{'loss': 1.2461, 'learning_rate': 2.312771419662018e-05, 'epoch': 0.61}
+{'loss': 1.2397, 'learning_rate': 2.3066458610166423e-05, 'epoch': 0.62}
+{'loss': 1.3252, 'learning_rate': 2.300430089547366e-05, 'epoch': 0.62}
+{'loss': 1.2344, 'learning_rate': 2.294124635935582e-05, 'epoch': 0.63}
+{'loss': 1.228, 'learning_rate': 2.2877300385194384e-05, 'epoch': 0.64}
+{'loss': 1.2793, 'learning_rate': 2.2812468432478778e-05, 'epoch': 0.65}
+{'loss': 1.2329, 'learning_rate': 2.2746756036340268e-05, 'epoch': 0.66}
+{'loss': 1.2197, 'learning_rate': 2.2680168807079354e-05, 'epoch': 0.67}
+{'loss': 1.2012, 'learning_rate': 2.2612712429686845e-05, 'epoch': 0.68}
+{'loss': 1.2812, 'learning_rate': 2.2544392663358422e-05, 'epoch': 0.68}
+{'loss': 1.2368, 'learning_rate': 2.2475215341003e-05, 'epoch': 0.69}
+{'loss': 1.2803, 'learning_rate': 2.2405186368744672e-05, 'epoch': 0.7}
+{'loss': 1.2842, 'learning_rate': 2.2334311725418543e-05, 'epoch': 0.71}
+{'loss': 1.2627, 'learning_rate': 2.2262597462060194e-05, 'epoch': 0.72}
+{'loss': 1.2515, 'learning_rate': 2.2190049701389122e-05, 'epoch': 0.73}
+{'loss': 1.292, 'learning_rate': 2.211667463728599e-05, 'epoch': 0.74}
+{'loss': 1.2126, 'learning_rate': 2.204247853426379e-05, 'epoch': 0.74}
+{'loss': 1.2598, 'learning_rate': 2.1967467726933036e-05, 'epoch': 0.75}
+{'loss': 1.1914, 'learning_rate': 2.189164861946092e-05, 'epoch': 0.76}
+{'loss': 1.1682, 'learning_rate': 2.1815027685024534e-05, 'epoch': 0.77}
+{'loss': 1.2615, 'learning_rate': 2.173761146525824e-05, 'epoch': 0.78}
+{'loss': 1.2881, 'learning_rate': 2.1659406569695144e-05, 'epoch': 0.79}
+{'loss': 1.3047, 'learning_rate': 2.1580419675202803e-05, 'epoch': 0.79}
+{'loss': 1.293, 'learning_rate': 2.1500657525413183e-05, 'epoch': 0.8}
+{'loss': 1.3005, 'learning_rate': 2.1420126930146906e-05, 'epoch': 0.81}
+{'loss': 1.3013, 'learning_rate': 2.1338834764831845e-05, 'epoch': 0.82}
+{'loss': 1.2412, 'learning_rate': 2.1256787969916138e-05, 'epoch': 0.83}
+{'loss': 1.1677, 'learning_rate': 2.1173993550275623e-05, 'epoch': 0.84}
+{'loss': 1.228, 'learning_rate': 2.1090458574615783e-05, 'epoch': 0.85}
+{'loss': 1.2295, 'learning_rate': 2.100619017486827e-05, 'epoch': 0.85}
+{'loss': 1.2168, 'learning_rate': 2.0921195545581967e-05, 'epoch': 0.86}
+{'loss': 1.1956, 'learning_rate': 2.0835481943308767e-05, 'epoch': 0.87}
+{'loss': 1.2385, 'learning_rate': 2.0749056685984036e-05, 'epoch': 0.88}
+{'loss': 1.1973, 'learning_rate': 2.0661927152301806e-05, 'epoch': 0.89}
+{'loss': 1.2058, 'learning_rate': 2.0574100781084842e-05, 'epoch': 0.9}
+{'loss': 1.23, 'learning_rate': 2.0485585070649515e-05, 'epoch': 0.91}
+{'loss': 1.2188, 'learning_rate': 2.0396387578165636e-05, 'epoch': 0.91}
+{'loss': 1.2271, 'learning_rate': 2.0306515919011243e-05, 'epoch': 0.92}
+{'loss': 1.2253, 'learning_rate': 2.0215977766122413e-05, 'epoch': 0.93}
+{'loss': 1.3022, 'learning_rate': 2.0124780849338208e-05, 'epoch': 0.94}
+{'loss': 1.1787, 'learning_rate': 2.0032932954740708e-05, 'epoch': 0.95}
+{'loss': 1.2141, 'learning_rate': 1.9940441923990236e-05, 'epoch': 0.96}
+{'loss': 1.2314, 'learning_rate': 1.9847315653655915e-05, 'epoch': 0.97}
+{'loss': 1.1831, 'learning_rate': 1.9753562094541446e-05, 'epoch': 0.97}
+{'loss': 1.1802, 'learning_rate': 1.9659189251006314e-05, 'epoch': 0.98}
+{'loss': 1.2207, 'learning_rate': 1.95642051802824e-05, 'epoch': 0.99}
+{'loss': 1.2002, 'learning_rate': 1.946861799178607e-05, 'epoch': 1.0}
+{'loss': 0.9536, 'learning_rate': 1.937243584642584e-05, 'epoch': 1.01}
+{'loss': 0.9062, 'learning_rate': 1.927566695590562e-05, 'epoch': 1.02}
+{'loss': 0.9309, 'learning_rate': 1.9178319582023603e-05, 'epoch': 1.03}
+{'loss': 0.9739, 'learning_rate': 1.908040203596695e-05, 'epoch': 1.03}
+{'loss': 0.9824, 'learning_rate': 1.8981922677602152e-05, 'epoch': 1.04}
+{'loss': 0.9172, 'learning_rate': 1.8882889914761337e-05, 'epoch': 1.05}
+{'loss': 0.9111, 'learning_rate': 1.8783312202524422e-05, 'epoch': 1.06}
+{'loss': 0.9329, 'learning_rate': 1.8683198042497238e-05, 'epoch': 1.07}
+{'loss': 0.8926, 'learning_rate': 1.8582555982085704e-05, 'epoch': 1.08}
+{'loss': 1.0498, 'learning_rate': 1.848139461376608e-05, 'epoch': 1.09}
+{'loss': 0.926, 'learning_rate': 1.8379722574351367e-05, 'epoch': 1.09}
+{'loss': 1.0388, 'learning_rate': 1.8277548544253916e-05, 'epoch': 1.1}
+{'loss': 0.9832, 'learning_rate': 1.8174881246744335e-05, 'epoch': 1.11}
+{'loss': 0.9553, 'learning_rate': 1.8071729447206733e-05, 'epoch': 1.12}
+{'loss': 0.9216, 'learning_rate': 1.796810195239033e-05, 'epoch': 1.13}
+{'loss': 0.8911, 'learning_rate': 1.786400760965761e-05, 'epoch': 1.14}
+{'loss': 0.9636, 'learning_rate': 1.775945530622894e-05, 'epoch': 1.15}
+{'loss': 0.918, 'learning_rate': 1.7654453968423797e-05, 'epoch': 1.15}
+{'loss': 0.9395, 'learning_rate': 1.7549012560898686e-05, 'epoch': 1.16}
+{'loss': 0.8921, 'learning_rate': 1.744314008588178e-05, 'epoch': 1.17}
+{'loss': 0.8721, 'learning_rate': 1.733684558240432e-05, 'epoch': 1.18}
+{'loss': 0.9011, 'learning_rate': 1.723013812552888e-05, 'epoch': 1.19}
+{'loss': 0.9548, 'learning_rate': 1.7123026825574614e-05, 'epoch': 1.2}
+{'loss': 0.9365, 'learning_rate': 1.7015520827339416e-05, 'epoch': 1.21}
+{'loss': 0.9106, 'learning_rate': 1.6907629309319156e-05, 'epoch': 1.21}
+{'loss': 0.9246, 'learning_rate': 1.6799361482924102e-05, 'epoch': 1.22}
+{'loss': 0.8918, 'learning_rate': 1.6690726591692423e-05, 'epoch': 1.23}
+{'loss': 0.937, 'learning_rate': 1.658173391050104e-05, 'epoch': 1.24}
+{'loss': 0.918, 'learning_rate': 1.647239274477377e-05, 'epoch': 1.25}
+{'loss': 0.9041, 'learning_rate': 1.6362712429686846e-05, 'epoch': 1.26}
+{'loss': 0.8867, 'learning_rate': 1.625270232937191e-05, 'epoch': 1.26}
+{'loss': 0.96, 'learning_rate': 1.614237183611656e-05, 'epoch': 1.27}
+{'loss': 0.9353, 'learning_rate': 1.603173036956244e-05, 'epoch': 1.28}
+{'loss': 0.9519, 'learning_rate': 1.5920787375901038e-05, 'epoch': 1.29}
+{'loss': 0.9492, 'learning_rate': 1.5809552327067197e-05, 'epoch': 1.3}
+{'loss': 0.8872, 'learning_rate': 1.5698034719930447e-05, 'epoch': 1.31}
+{'loss': 0.9771, 'learning_rate': 1.5586244075484165e-05, 'epoch': 1.32}
+{'loss': 0.9155, 'learning_rate': 1.5474189938032734e-05, 'epoch': 1.32}
+{'loss': 0.8757, 'learning_rate': 1.5361881874376676e-05, 'epoch': 1.33}
+{'loss': 0.9031, 'learning_rate': 1.524932947299586e-05, 'epoch': 1.34}
+{'loss': 0.8999, 'learning_rate': 1.5136542343230876e-05, 'epoch': 1.35}
+{'loss': 0.9238, 'learning_rate': 1.5023530114462628e-05, 'epoch': 1.36}
+{'loss': 0.9326, 'learning_rate': 1.4910302435290214e-05, 'epoch': 1.37}
+{'loss': 0.9124, 'learning_rate': 1.4796868972707132e-05, 'epoch': 1.38}
+{'loss': 0.9221, 'learning_rate': 1.4683239411275987e-05, 'epoch': 1.38}
+{'loss': 0.9531, 'learning_rate': 1.4569423452301626e-05, 'epoch': 1.39}
+{'loss': 0.9512, 'learning_rate': 1.4455430813002888e-05, 'epoch': 1.4}
+{'loss': 0.9446, 'learning_rate': 1.434127122568297e-05, 'epoch': 1.41}
+{'loss': 0.9058, 'learning_rate': 1.4226954436898529e-05, 'epoch': 1.42}
+{'loss': 0.9585, 'learning_rate': 1.4112490206627543e-05, 'epoch': 1.43}
+{'loss': 0.9463, 'learning_rate': 1.3997888307436042e-05, 'epoch': 1.44}
+{'loss': 0.8892, 'learning_rate': 1.388315852364376e-05, 'epoch': 1.44}
+{'loss': 0.97, 'learning_rate': 1.3768310650488788e-05, 'epoch': 1.45}
+{'loss': 0.8914, 'learning_rate': 1.3653354493291276e-05, 'epoch': 1.46}
+{'loss': 0.9836, 'learning_rate': 1.35382998666163e-05, 'epoch': 1.47}
+{'loss': 0.8994, 'learning_rate': 1.3423156593435926e-05, 'epoch': 1.48}
+{'loss': 0.9385, 'learning_rate': 1.3307934504290553e-05, 'epoch': 1.49}
+{'loss': 0.9167, 'learning_rate': 1.3192643436449626e-05, 'epoch': 1.5}
+{'loss': 0.9265, 'learning_rate': 1.3077293233071748e-05, 'epoch': 1.5}
+{'loss': 0.9551, 'learning_rate': 1.2961893742364315e-05, 'epoch': 1.51}
+{'loss': 0.9226, 'learning_rate': 1.2846454816742706e-05, 'epoch': 1.52}
+{'loss': 0.8708, 'learning_rate': 1.2730986311989123e-05, 'epoch': 1.53}
+{'loss': 0.9771, 'learning_rate': 1.2615498086411138e-05, 'epoch': 1.54}
+{'loss': 0.9153, 'learning_rate': 1.25e-05, 'epoch': 1.55}
+{'loss': 0.9456, 'learning_rate': 1.2384501913588867e-05, 'epoch': 1.56}
+{'loss': 0.9365, 'learning_rate': 1.226901368801088e-05, 'epoch': 1.56}
+{'loss': 0.8647, 'learning_rate': 1.2153545183257297e-05, 'epoch': 1.57}
+{'loss': 0.9817, 'learning_rate': 1.2038106257635692e-05, 'epoch': 1.58}
+{'loss': 0.9253, 'learning_rate': 1.1922706766928259e-05, 'epoch': 1.59}
+{'loss': 0.9121, 'learning_rate': 1.1807356563550376e-05, 'epoch': 1.6}
+{'loss': 0.9644, 'learning_rate': 1.1692065495709448e-05, 'epoch': 1.61}
+{'loss': 0.9573, 'learning_rate': 1.1576843406564076e-05, 'epoch': 1.62}
+{'loss': 0.9741, 'learning_rate': 1.1461700133383704e-05, 'epoch': 1.62}
+{'loss': 0.9407, 'learning_rate': 1.1346645506708726e-05, 'epoch': 1.63}
+{'loss': 0.8965, 'learning_rate': 1.1231689349511215e-05, 'epoch': 1.64}
+{'loss': 0.8718, 'learning_rate': 1.1116841476356243e-05, 'epoch': 1.65}
+{'loss': 0.8955, 'learning_rate': 1.1002111692563963e-05, 'epoch': 1.66}
+{'loss': 0.9412, 'learning_rate': 1.0887509793372461e-05, 'epoch': 1.67}
+{'loss': 0.8765, 'learning_rate': 1.0773045563101476e-05, 'epoch': 1.68}
+{'loss': 0.9329, 'learning_rate': 1.0658728774317029e-05, 'epoch': 1.68}
+{'loss': 0.9839, 'learning_rate': 1.0544569186997112e-05, 'epoch': 1.69}
+{'loss': 0.9399, 'learning_rate': 1.0430576547698374e-05, 'epoch': 1.7}
+{'loss': 0.9578, 'learning_rate': 1.0316760588724014e-05, 'epoch': 1.71}
+{'loss': 0.9067, 'learning_rate': 1.0203131027292869e-05, 'epoch': 1.72}
+{'loss': 0.8909, 'learning_rate': 1.0089697564709791e-05, 'epoch': 1.73}
+{'loss': 0.9268, 'learning_rate': 9.976469885537375e-06, 'epoch': 1.74}
+{'loss': 0.8872, 'learning_rate': 9.863457656769129e-06, 'epoch': 1.74}
+{'loss': 0.9526, 'learning_rate': 9.750670527004146e-06, 'epoch': 1.75}
+{'loss': 0.8787, 'learning_rate': 9.638118125623327e-06, 'epoch': 1.76}
+{'loss': 0.9236, 'learning_rate': 9.525810061967269e-06, 'epoch': 1.77}
+{'loss': 0.928, 'learning_rate': 9.413755924515835e-06, 'epoch': 1.78}
+{'loss': 0.8525, 'learning_rate': 9.301965280069554e-06, 'epoch': 1.79}
+{'loss': 0.895, 'learning_rate': 9.190447672932802e-06, 'epoch': 1.79}
+{'loss': 0.9553, 'learning_rate': 9.079212624098965e-06, 'epoch': 1.8}
+{'loss': 0.9336, 'learning_rate': 8.968269630437561e-06, 'epoch': 1.81}
+{'loss': 0.9109, 'learning_rate': 8.857628163883443e-06, 'epoch': 1.82}
+{'loss': 0.9187, 'learning_rate': 8.747297670628092e-06, 'epoch': 1.83}
+{'loss': 1.0017, 'learning_rate': 8.637287570313159e-06, 'epoch': 1.84}
+{'loss': 0.8879, 'learning_rate': 8.52760725522623e-06, 'epoch': 1.85}
+{'loss': 0.8997, 'learning_rate': 8.41826608949896e-06, 'epoch': 1.85}
+{'loss': 0.8977, 'learning_rate': 8.30927340830758e-06, 'epoch': 1.86}
+{'loss': 0.9722, 'learning_rate': 8.200638517075899e-06, 'epoch': 1.87}
+{'loss': 0.9871, 'learning_rate': 8.092370690680842e-06, 'epoch': 1.88}
+{'loss': 0.9397, 'learning_rate': 7.984479172660589e-06, 'epoch': 1.89}
+{'loss': 0.9004, 'learning_rate': 7.876973174425387e-06, 'epoch': 1.9}
+{'loss': 0.95, 'learning_rate': 7.769861874471123e-06, 'epoch': 1.91}
+{'loss': 0.9219, 'learning_rate': 7.663154417595687e-06, 'epoch': 1.91}
+{'loss': 0.9153, 'learning_rate': 7.556859914118219e-06, 'epoch': 1.92}
+{'loss': 0.8989, 'learning_rate': 7.450987439101315e-06, 'epoch': 1.93}
+{'loss': 0.9192, 'learning_rate': 7.345546031576209e-06, 'epoch': 1.94}
+{'loss': 0.9229, 'learning_rate': 7.240544693771066e-06, 'epoch': 1.95}
+{'loss': 0.9802, 'learning_rate': 7.135992390342389e-06, 'epoch': 1.96}
+{'loss': 0.8979, 'learning_rate': 7.031898047609672e-06, 'epoch': 1.97}
+{'loss': 0.8987, 'learning_rate': 6.928270552793273e-06, 'epoch': 1.97}
+{'loss': 0.8838, 'learning_rate': 6.825118753255666e-06, 'epoch': 1.98}
+{'loss': 0.9263, 'learning_rate': 6.722451455746087e-06, 'epoch': 1.99}
+{'loss': 0.9072, 'learning_rate': 6.6202774256486355e-06, 'epoch': 2.0}
+{'loss': 0.729, 'learning_rate': 6.51860538623392e-06, 'epoch': 2.01}
+{'loss': 0.7451, 'learning_rate': 6.417444017914298e-06, 'epoch': 2.02}
+{'loss': 0.751, 'learning_rate': 6.316801957502767e-06, 'epoch': 2.03}
+{'loss': 0.7183, 'learning_rate': 6.216687797475583e-06, 'epoch': 2.03}
+{'loss': 0.7024, 'learning_rate': 6.117110085238665e-06, 'epoch': 2.04}
+{'loss': 0.6508, 'learning_rate': 6.0180773223978485e-06, 'epoch': 2.05}
+{'loss': 0.719, 'learning_rate': 5.919597964033051e-06, 'epoch': 2.06}
+{'loss': 0.6973, 'learning_rate': 5.821680417976395e-06, 'epoch': 2.07}
+{'loss': 0.7234, 'learning_rate': 5.724333044094382e-06, 'epoch': 2.08}
+{'loss': 0.7424, 'learning_rate': 5.62756415357416e-06, 'epoch': 2.09}
+{'loss': 0.7139, 'learning_rate': 5.531382008213931e-06, 'epoch': 2.09}
+{'loss': 0.6763, 'learning_rate': 5.435794819717602e-06, 'epoch': 2.1}
+{'loss': 0.6621, 'learning_rate': 5.340810748993685e-06, 'epoch': 2.11}
+{'loss': 0.6871, 'learning_rate': 5.246437905458555e-06, 'epoch': 2.12}
+{'loss': 0.7148, 'learning_rate': 5.152684346344087e-06, 'epoch': 2.13}
+{'loss': 0.7122, 'learning_rate': 5.059558076009767e-06, 'epoch': 2.14}
+{'loss': 0.7502, 'learning_rate': 4.967067045259296e-06, 'epoch': 2.15}
+{'loss': 0.6649, 'learning_rate': 4.875219150661792e-06, 'epoch': 2.15}
+{'loss': 0.703, 'learning_rate': 4.7840222338775904e-06, 'epoch': 2.16}
+{'loss': 0.6799, 'learning_rate': 4.6934840809887635e-06, 'epoch': 2.17}
+{'loss': 0.631, 'learning_rate': 4.603612421834366e-06, 'epoch': 2.18}
+{'loss': 0.7373, 'learning_rate': 4.514414929350487e-06, 'epoch': 2.19}
+{'loss': 0.6853, 'learning_rate': 4.425899218915161e-06, 'epoch': 2.2}
+{'loss': 0.7061, 'learning_rate': 4.338072847698199e-06, 'epoch': 2.21}
+{'loss': 0.6851, 'learning_rate': 4.25094331401597e-06, 'epoch': 2.21}
+{'loss': 0.6873, 'learning_rate': 4.164518056691237e-06, 'epoch': 2.22}
+{'loss': 0.7263, 'learning_rate': 4.078804454418035e-06, 'epoch': 2.23}
+{'loss': 0.7168, 'learning_rate': 3.993809825131731e-06, 'epoch': 2.24}
+{'loss': 0.7291, 'learning_rate': 3.909541425384217e-06, 'epoch': 2.25}
+{'loss': 0.7136, 'learning_rate': 3.82600644972438e-06, 'epoch': 2.26}
+{'loss': 0.7183, 'learning_rate': 3.7432120300838633e-06, 'epoch': 2.26}
+{'loss': 0.7136, 'learning_rate': 3.6611652351681568e-06, 'epoch': 2.27}
+{'loss': 0.657, 'learning_rate': 3.579873069853097e-06, 'epoch': 2.28}
+{'loss': 0.6912, 'learning_rate': 3.4993424745868196e-06, 'epoch': 2.29}
+{'loss': 0.6958, 'learning_rate': 3.4195803247972003e-06, 'epoch': 2.3}
+{'loss': 0.7134, 'learning_rate': 3.34059343030486e-06, 'epoch': 2.31}
+{'loss': 0.6801, 'learning_rate': 3.262388534741763e-06, 'epoch': 2.32}
+{'loss': 0.7102, 'learning_rate': 3.1849723149754666e-06, 'epoch': 2.32}
+{'loss': 0.6938, 'learning_rate': 3.108351380539083e-06, 'epoch': 2.33}
+{'loss': 0.6315, 'learning_rate': 3.0325322730669654e-06, 'epoch': 2.34}
+{'loss': 0.6968, 'learning_rate': 2.9575214657362126e-06, 'epoch': 2.35}
+{'loss': 0.6929, 'learning_rate': 2.8833253627140135e-06, 'epoch': 2.36}
+{'loss': 0.6812, 'learning_rate': 2.8099502986108765e-06, 'epoch': 2.37}
+{'loss': 0.7271, 'learning_rate': 2.737402537939808e-06, 'epoch': 2.38}
+{'loss': 0.6584, 'learning_rate': 2.66568827458146e-06, 'epoch': 2.38}
+{'loss': 0.7102, 'learning_rate': 2.594813631255327e-06, 'epoch': 2.39}
+{'loss': 0.6936, 'learning_rate': 2.5247846589970065e-06, 'epoch': 2.4}
+{'loss': 0.699, 'learning_rate': 2.4556073366415785e-06, 'epoch': 2.41}
+{'loss': 0.6921, 'learning_rate': 2.3872875703131583e-06, 'epoch': 2.42}
+{'loss': 0.7048, 'learning_rate': 2.3198311929206463e-06, 'epoch': 2.43}
+{'loss': 0.656, 'learning_rate': 2.2532439636597372e-06, 'epoch': 2.44}
+{'loss': 0.6885, 'learning_rate': 2.1875315675212226e-06, 'epoch': 2.44}
+{'loss': 0.7485, 'learning_rate': 2.122699614805619e-06, 'epoch': 2.45}
+{'loss': 0.7034, 'learning_rate': 2.058753640644183e-06, 'epoch': 2.46}
+{'loss': 0.7142, 'learning_rate': 1.995699104526343e-06, 'epoch': 2.47}
+{'loss': 0.6885, 'learning_rate': 1.933541389833582e-06, 'epoch': 2.48}
+{'loss': 0.6676, 'learning_rate': 1.8722858033798252e-06, 'epoch': 2.49}
+{'loss': 0.6736, 'learning_rate': 1.8119375749583626e-06, 'epoch': 2.5}
+{'loss': 0.7427, 'learning_rate': 1.7525018568953444e-06, 'epoch': 2.5}
+{'loss': 0.7104, 'learning_rate': 1.6939837236099016e-06, 'epoch': 2.51}
+{'loss': 0.6931, 'learning_rate': 1.6363881711808956e-06, 'epoch': 2.52}
+{'loss': 0.6697, 'learning_rate': 1.5797201169203816e-06, 'epoch': 2.53}
+{'loss': 0.6729, 'learning_rate': 1.5239843989537761e-06, 'epoch': 2.54}
+{'loss': 0.6361, 'learning_rate': 1.4691857758068042e-06, 'epoch': 2.55}
+{'loss': 0.7241, 'learning_rate': 1.4153289259992264e-06, 'epoch': 2.56}
+{'loss': 0.6877, 'learning_rate': 1.3624184476454027e-06, 'epoch': 2.56}
+{'loss': 0.6843, 'learning_rate': 1.3104588580617223e-06, 'epoch': 2.57}
+{'loss': 0.7224, 'learning_rate': 1.2594545933809307e-06, 'epoch': 2.58}
+{'loss': 0.6965, 'learning_rate': 1.2094100081733894e-06, 'epoch': 2.59}
+{'loss': 0.6633, 'learning_rate': 1.1603293750752933e-06, 'epoch': 2.6}
+{'loss': 0.7065, 'learning_rate': 1.1122168844238944e-06, 'epoch': 2.61}
+{'loss': 0.6785, 'learning_rate': 1.0650766438997373e-06, 'epoch': 2.62}
+{'loss': 0.7332, 'learning_rate': 1.0189126781759623e-06, 'epoch': 2.62}
+{'loss': 0.6775, 'learning_rate': 9.737289285746936e-07, 'epoch': 2.63}
+{'loss': 0.6943, 'learning_rate': 9.295292527305475e-07, 'epoch': 2.64}
+{'loss': 0.6775, 'learning_rate': 8.863174242612668e-07, 'epoch': 2.65}
+{'loss': 0.7004, 'learning_rate': 8.440971324455538e-07, 'epoch': 2.66}
+{'loss': 0.7307, 'learning_rate': 8.028719819080946e-07, 'epoch': 2.67}
+{'loss': 0.7119, 'learning_rate': 7.626454923117948e-07, 'epoch': 2.68}
+{'loss': 0.676, 'learning_rate': 7.234210980572962e-07, 'epoch': 2.68}
+{'loss': 0.6967, 'learning_rate': 6.852021479897566e-07, 'epoch': 2.69}
+{'loss': 0.6788, 'learning_rate': 6.479919051129268e-07, 'epoch': 2.7}
+{'loss': 0.6615, 'learning_rate': 6.117935463105809e-07, 'epoch': 2.71}
+{'loss': 0.7002, 'learning_rate': 5.766101620752737e-07, 'epoch': 2.72}
+{'loss': 0.7021, 'learning_rate': 5.424447562444909e-07, 'epoch': 2.73}
+{'loss': 0.6552, 'learning_rate': 5.093002457441889e-07, 'epoch': 2.74}
+{'loss': 0.6963, 'learning_rate': 4.77179460339762e-07, 'epoch': 2.74}
+{'loss': 0.7844, 'learning_rate': 4.460851423944395e-07, 'epoch': 2.75}
+{'loss': 0.7036, 'learning_rate': 4.160199466351572e-07, 'epoch': 2.76}
+{'loss': 0.6926, 'learning_rate': 3.8698643992590574e-07, 'epoch': 2.77}
+{'loss': 0.676, 'learning_rate': 3.5898710104857594e-07, 'epoch': 2.78}
+{'loss': 0.7008, 'learning_rate': 3.3202432049133923e-07, 'epoch': 2.79}
+{'loss': 0.6594, 'learning_rate': 3.0610040024454253e-07, 'epoch': 2.79}
+{'loss': 0.6913, 'learning_rate': 2.8121755360417806e-07, 'epoch': 2.8}
+{'loss': 0.6622, 'learning_rate': 2.573779049829264e-07, 'epoch': 2.81}
+{'loss': 0.6348, 'learning_rate': 2.3458348972876936e-07, 'epoch': 2.82}
+{'loss': 0.6731, 'learning_rate': 2.128362539512277e-07, 'epoch': 2.83}
+{'loss': 0.7114, 'learning_rate': 1.921380543552051e-07, 'epoch': 2.84}
+{'loss': 0.7478, 'learning_rate': 1.7249065808246783e-07, 'epoch': 2.85}
+{'loss': 0.6904, 'learning_rate': 1.5389574256077926e-07, 'epoch': 2.85}
+{'loss': 0.6536, 'learning_rate': 1.3635489536067552e-07, 'epoch': 2.86}
+{'loss': 0.7163, 'learning_rate': 1.1986961405993645e-07, 'epoch': 2.87}
+{'loss': 0.6802, 'learning_rate': 1.0444130611571567e-07, 'epoch': 2.88}
+{'loss': 0.6621, 'learning_rate': 9.007128874438802e-08, 'epoch': 2.89}
+{'loss': 0.657, 'learning_rate': 7.676078880907988e-08, 'epoch': 2.9}
+{'loss': 0.7107, 'learning_rate': 6.451094271493068e-08, 'epoch': 2.91}
+{'loss': 0.6127, 'learning_rate': 5.3322796312069154e-08, 'epoch': 2.91}
+{'loss': 0.6658, 'learning_rate': 4.319730480631806e-08, 'epoch': 2.92}
+{'loss': 0.6987, 'learning_rate': 3.413533267764973e-08, 'epoch': 2.93}
+{'loss': 0.7108, 'learning_rate': 2.6137653606371492e-08, 'epoch': 2.94}
+{'loss': 0.6658, 'learning_rate': 1.9204950407075706e-08, 'epoch': 2.95}
+{'loss': 0.6819, 'learning_rate': 1.3337814970344753e-08, 'epoch': 2.96}
+{'loss': 0.7336, 'learning_rate': 8.536748212213674e-09, 'epoch': 2.97}
+{'loss': 0.6808, 'learning_rate': 4.802160031407155e-09, 'epoch': 2.97}
+{'loss': 0.6589, 'learning_rate': 2.1343692743411305e-09, 'epoch': 2.98}
+{'loss': 0.7041, 'learning_rate': 5.336037079015088e-10, 'epoch': 2.99}
+{'loss': 0.6779, 'learning_rate': 0.0, 'epoch': 3.0}
+{'train_runtime': 9597.3354, 'train_samples_per_second': 9.349, 'train_steps_per_second': 0.037, 'train_loss': 0.974052233573718, 'epoch': 3.0}
+[2023-11-16 19:32:55,769] [INFO] [launch.py:347:main] Process 1383294 exits successfully.
+[2023-11-16 19:32:55,769] [INFO] [launch.py:347:main] Process 1383295 exits successfully.
+[2023-11-16 19:32:55,770] [INFO] [launch.py:347:main] Process 1383296 exits successfully.
+Finish training...
+[2023-11-16 19:33:12,787] [INFO] [launch.py:347:main] Process 1383293 exits successfully.
